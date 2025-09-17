@@ -94,9 +94,16 @@ function App() {
           <div className="col-span-4 flex gap-2 h-full">
             {products.map((product) => (
               <Card key={product.id}>
-                <div className="p-4 gap-4">
-                  <img src={product.img} />
+                <div className="flex justify-end">
+                  <div className="p-3">🖊️</div>
                 </div>
+                <div className="p-4 flex justify-center">
+                  <img src={product.img} className="max-h-28" />
+                </div>
+                <span className="flex justify-between m-2 text-[#7c52b7]">
+                  <p>{product.name}</p>
+                  <p>{product.price}€</p>
+                </span>
               </Card>
             ))}
           </div>
