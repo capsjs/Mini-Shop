@@ -6,17 +6,23 @@ import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 import Card from "./components/card/Card";
 import { useApp } from "./app.hook";
 import { products } from "./lib/products";
+import { Modal } from "./components/modal/Modal";
 
 function App() {
   const { t } = useTranslation();
   const {
     sortedProducts,
     categories,
+    isOpenModal,
+    handleOpenModal,
     sortByAscendingPrice,
     sortByDescendingPrice,
     handleChangeSearchInput,
     filterByCategory,
+    getSelectedProduct,
+    handleCloseModal,
   } = useApp();
+  const selectedProduct = getSelectedProduct();
 
   return (
     <>
@@ -90,11 +96,15 @@ function App() {
               </span>
             </div>
           </div>
+
           <div className="col-span-4 flex gap-2 h-full">
             {sortedProducts.map((product) => (
               <Card key={product.id}>
-                <div className="flex justify-end">
-                  <div className="p-3">🖊️</div>
+                <div
+                  className="flex justify-end"
+                  onClick={() => handleOpenModal(parseInt(product.id))}
+                >
+                  <div className="p-3 cursor-pointer">🖊️</div>
                 </div>
                 <div className="p-4 flex justify-center">
                   <img src={product.img} className="max-h-28" />
@@ -107,6 +117,43 @@ function App() {
             ))}
           </div>
         </div>
+        {isOpenModal && selectedProduct && (
+          <Modal isOpen={isOpenModal} onClose={() => false}>
+            <div className="flex flex-col justify-center items-center">
+              <img src={selectedProduct.img} className="max-h-28" />
+              <p>{selectedProduct.name}</p>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-2 pl-2  ">
+              <label>
+                {t("stock")}:
+                <input
+                  type="number"
+                  value={selectedProduct.stock}
+                  className="border-2 border-[#7c52b7] rounded-md"
+                />
+              </label>
+              <label>
+                {t("price")}:
+                <input
+                  type="number"
+                  value={selectedProduct.price}
+                  className="border-2 border-[#7c52b7] rounded-md"
+                />
+              </label>
+            </div>
+            <div className="flex justify-evenly pt-3">
+              <button className="bg-green-600 rounded-md p-2">
+                <p>{t("confirm")}</p>
+              </button>
+              <button
+                className="bg-red-700 rounded-md p-2"
+                onClick={handleCloseModal}
+              >
+                <p>{t("cancel")}</p>
+              </button>
+            </div>
+          </Modal>
+        )}
       </div>
     </>
   );

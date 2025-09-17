@@ -6,6 +6,8 @@ import { products } from "./lib/products";
 export const useApp = () => {
   const [sortedProducts, setSortedProducts] = useState<TProduct[]>(products);
   const categories = ["all", ...Array.from(new Set(products.map(product => product.category)))]
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
 
   const sortByAscendingPrice = () => {
     setSortedProducts(prev => [...prev].sort((a, b) => +a.price - +b.price))
@@ -36,12 +38,33 @@ const filterByCategory = (category: string, products: TProduct[]) => {
   }
 };
 
+const handleOpenModal = (productId: number) => {
+  const productsIds = products.map(product => parseInt(product.id));
+  if (productsIds.includes(productId)) {
+  setSelectedProductId(productId);
+  setIsOpenModal(true);
+  }
+};
+
+const getSelectedProduct = () => {
+  return products.find(product => parseInt(product.id) === selectedProductId) || null;
+};
+
+const handleCloseModal = () => {
+  setIsOpenModal(false);
+  setSelectedProductId(null);
+};
+
   return {
     sortedProducts,
     categories,
+    isOpenModal,
     sortByAscendingPrice,
     sortByDescendingPrice,
     handleChangeSearchInput,
-    filterByCategory
+    filterByCategory,
+    handleOpenModal,
+    getSelectedProduct,
+    handleCloseModal,
   }
 }
