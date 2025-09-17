@@ -14,6 +14,7 @@ function App() {
     sortedProducts,
     categories,
     isOpenModal,
+    updatedProductPrice,
     handleOpenModal,
     sortByAscendingPrice,
     sortByDescendingPrice,
@@ -21,6 +22,8 @@ function App() {
     filterByCategory,
     getSelectedProduct,
     handleCloseModal,
+    handleProductPriceChange,
+    handleConfirmPriceChange,
   } = useApp();
   const selectedProduct = getSelectedProduct();
 
@@ -136,13 +139,20 @@ function App() {
                 {t("price")}:
                 <input
                   type="number"
-                  value={selectedProduct.price}
+                  value={updatedProductPrice ?? selectedProduct.price}
+                  min={0}
                   className="border-2 border-[#7c52b7] rounded-md"
+                  onChange={(e) =>
+                    handleProductPriceChange(Number(e.target.value))
+                  }
                 />
               </label>
             </div>
             <div className="flex justify-evenly pt-3">
-              <button className="bg-green-600 rounded-md p-2">
+              <button
+                className="bg-green-600 rounded-md p-2"
+                onClick={handleConfirmPriceChange}
+              >
                 <p>{t("confirm")}</p>
               </button>
               <button

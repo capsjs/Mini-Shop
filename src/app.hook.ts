@@ -8,6 +8,7 @@ export const useApp = () => {
   const categories = ["all", ...Array.from(new Set(products.map(product => product.category)))]
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+  const [updatedProductPrice, setUpdatedProductPrice] = useState<number | null>(null);  
 
   const sortByAscendingPrice = () => {
     setSortedProducts(prev => [...prev].sort((a, b) => +a.price - +b.price))
@@ -55,10 +56,31 @@ const handleCloseModal = () => {
   setSelectedProductId(null);
 };
 
+const handleProductPriceChange = (price: number) => {
+  setUpdatedProductPrice(price);
+  console.log(price); 
+};
+
+const handleConfirmPriceChange = () => {
+  if (selectedProductId !== null && updatedProductPrice !== null) {
+    setSortedProducts(prevProducts =>
+      prevProducts.map(product =>
+        parseInt(product.id) === selectedProductId
+          ? { ...product, price: updatedProductPrice }
+          : product
+      )
+    );
+    setIsOpenModal(false);
+    setSelectedProductId(null);
+    setUpdatedProductPrice(null);
+  } 
+};
+
   return {
     sortedProducts,
     categories,
     isOpenModal,
+    updatedProductPrice,
     sortByAscendingPrice,
     sortByDescendingPrice,
     handleChangeSearchInput,
@@ -66,5 +88,7 @@ const handleCloseModal = () => {
     handleOpenModal,
     getSelectedProduct,
     handleCloseModal,
+    handleProductPriceChange,
+    handleConfirmPriceChange,
   }
 }
