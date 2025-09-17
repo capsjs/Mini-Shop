@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import "./translation/locales/i18n";
 
 import "./App.css";
@@ -9,12 +8,13 @@ import { products } from "./lib/products";
 import { Modal } from "./components/modal/Modal";
 
 function App() {
-  const { t } = useTranslation();
   const {
+    t,
     sortedProducts,
     categories,
     isOpenModal,
     updatedProductPrice,
+    updatedProductStock,
     handleOpenModal,
     sortByAscendingPrice,
     sortByDescendingPrice,
@@ -24,6 +24,7 @@ function App() {
     handleCloseModal,
     handleProductPriceChange,
     handleConfirmPriceChange,
+    handleProductStockChange,
   } = useApp();
   const selectedProduct = getSelectedProduct();
 
@@ -131,8 +132,12 @@ function App() {
                 {t("stock")}:
                 <input
                   type="number"
-                  value={selectedProduct.stock}
+                  value={updatedProductStock ?? selectedProduct.stock}
+                  min={0}
                   className="border-2 border-[#7c52b7] rounded-md"
+                  onChange={(e) =>
+                    handleProductStockChange(Number(e.target.value))
+                  }
                 />
               </label>
               <label>

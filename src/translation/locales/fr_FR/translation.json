@@ -1,11 +1,14 @@
 {
   "filter": "Filtrer",
-  "home": "Maison",
-  "tech": "Tech",
-  "stationery": "Papeterie",
+  "all": "Tous",
+  "Home": "Maison",
+  "Tech": "Tech",
+  "Stationery": "Papeterie",
   "price": "Prix",
   "ascending": "Croissant",
   "descending": "Décroissant",
   "search": "Rechercher",
-  "category": "Catégorie"
+  "category": "Catégorie",
+  "stock cannot be less than or equal to zero.": "Le stock ne peut pas être inférieur ou égal à zéro.",
+  "price cannot be less than or equal to zero.": "Le prix ne peut pas être inférieur ou égal à zéro."
 }
