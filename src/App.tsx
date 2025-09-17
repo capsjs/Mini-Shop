@@ -4,6 +4,7 @@ import "./translation/locales/i18n";
 import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 import Card from "./components/card/Card";
+import { products } from "./lib/products";
 
 function App() {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ function App() {
         <div className="grid grid-cols-5 h-full">
           <div
             id="menu-content"
-            className="col-start-1 col-end-2 flex flex-col text-[#7c52b7] font-semibold h-full p-4 m-4 border-r-2 border-[#7c52b7] gap-4"
+            className="col-span-1 flex flex-col text-[#7c52b7] font-semibold h-full p-4 m-4 border-r-2 border-[#7c52b7] gap-4"
           >
             <p>{t("filter")}</p>
             <div className="flex flex-col gap-2">
@@ -90,8 +91,14 @@ function App() {
               </span>
             </div>
           </div>
-          <div className="col-start-2 flex gap-2">
-            <Card />
+          <div className="col-span-4 flex gap-2 h-full">
+            {products.map((product) => (
+              <Card key={product.id}>
+                <div className="p-4 gap-4">
+                  <img src={product.img} />
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
