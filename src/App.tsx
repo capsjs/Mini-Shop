@@ -1,4 +1,5 @@
 import "./translation/locales/i18n";
+import { useNavigate } from "react-router-dom";
 
 import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
@@ -8,6 +9,7 @@ import { products } from "./lib/products";
 import { Modal } from "./components/modal/Modal";
 
 function App() {
+  const navigate = useNavigate();
   const {
     t,
     sortedProducts,
@@ -36,7 +38,8 @@ function App() {
         </div>
         <div
           id="header-logo"
-          className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd]"
+          className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd] cursor-pointer"
+          onClick={() => navigate("/")}
         >
           <p>Mini Shop</p>
         </div>
@@ -103,21 +106,26 @@ function App() {
 
           <div className="col-span-4 flex gap-2 h-full">
             {sortedProducts.map((product) => (
-              <Card key={product.id}>
-                <div
-                  className="flex justify-end"
-                  onClick={() => handleOpenModal(parseInt(product.id))}
-                >
-                  <div className="p-3 cursor-pointer">🖊️</div>
-                </div>
-                <div className="p-4 flex justify-center">
-                  <img src={product.img} className="max-h-28" />
-                </div>
-                <span className="flex justify-between m-2 text-[#7c52b7]">
-                  <p>{product.name}</p>
-                  <p>{product.price}€</p>
-                </span>
-              </Card>
+              <>
+                <Card key={product.id}>
+                  <div
+                    className="flex justify-end"
+                    onClick={() => handleOpenModal(parseInt(product.id))}
+                  >
+                    <div className="p-3 cursor-pointer">🖊️</div>
+                  </div>
+                  <div
+                    className="p-4 flex justify-center"
+                    onClick={() => navigate(`/product/${product.id}`)}
+                  >
+                    <img src={product.img} className="max-h-28" />
+                  </div>
+                  <span className="flex justify-between m-2 text-[#7c52b7]">
+                    <p>{product.name}</p>
+                    <p>{product.price}€</p>
+                  </span>
+                </Card>
+              </>
             ))}
           </div>
         </div>

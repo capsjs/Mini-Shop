@@ -10,5 +10,6 @@
   "search": "Rechercher",
   "category": "Catégorie",
   "stock cannot be less than or equal to zero.": "Le stock ne peut pas être inférieur ou égal à zéro.",
-  "price cannot be less than or equal to zero.": "Le prix ne peut pas être inférieur ou égal à zéro."
+  "price cannot be less than or equal to zero.": "Le prix ne peut pas être inférieur ou égal à zéro.",
+  "out of stock": "Rupture de stock"
 }
