@@ -5,14 +5,17 @@ import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 import Card from "./components/card/Card";
 import { useApp } from "./app.hook";
+import { products } from "./lib/products";
 
 function App() {
   const { t } = useTranslation();
   const {
     sortedProducts,
+    categories,
     sortByAscendingPrice,
     sortByDescendingPrice,
     handleChangeSearchInput,
+    filterByCategory,
   } = useApp();
 
   return (
@@ -47,30 +50,19 @@ function App() {
             <p>{t("filter")}</p>
             <div className="flex flex-col gap-2">
               <p>{t("category")}</p>
-              <span className="flex flex-col">
-                <label>
-                  <input type="radio" name="category" value="home" />
-                  {t("home")}
-                </label>
-                <label>
-                  <input
-                    aria-label="category"
-                    type="radio"
-                    name="category"
-                    value="tech"
-                  />
-                  {t("tech")}
-                </label>
-                <label>
-                  <input
-                    aria-label="category"
-                    type="radio"
-                    name="category"
-                    value="stationery"
-                  />
-                  {t("stationery")}
-                </label>
-              </span>
+              {categories.map((item) => (
+                <span className="flex flex-col">
+                  <label>
+                    <input
+                      type="radio"
+                      name="category"
+                      value={item}
+                      onChange={() => filterByCategory(item, products)}
+                    />
+                    {t(`${item}`)}
+                  </label>
+                </span>
+              ))}
               <p>{t("price")}</p>
               <span className="flex flex-col">
                 <label>
