@@ -1,0 +1,11 @@
+{
+"filter": "Filter",
+  "home": "Home",
+  "tech": "Tech",
+  "stationery": "Stationery",
+  "price": "Price",
+  "ascending": "Ascending",
+  "descending": "Descending",
+  "search": "Search",
+  "category": "Category"
+}

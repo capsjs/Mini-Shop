@@ -1,12 +1,17 @@
+import { useTranslation } from "react-i18next";
+import "./translation/locales/i18n";
+
 import "./App.css";
+import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="flex flex-col h-screen">
         <div className="flex justify-end m-4 gap-4 text-black">
-          <p>EN</p>
-          <p>FR</p>
+          <LanguageSwitcher />
         </div>
         <div
           id="header-logo"
@@ -20,7 +25,11 @@ function App() {
             id="search-bar"
             className="flex border-2 border-[#7c52b7] rounded-md pl-2 items-center"
           >
-            <input aria-label="search-bar" type="text" placeholder="search" />
+            <input
+              aria-label="search-bar"
+              type="text"
+              placeholder={t("search")}
+            />
           </div>
         </div>
 
@@ -28,13 +37,13 @@ function App() {
           id="menu-content"
           className="flex flex-col text-[#7c52b7] font-semibold w-1/6 h-full p-4 m-4 border-r-2 border-[#7c52b7] gap-4"
         >
-          <p>Filter</p>
+          <p>{t("filter")}</p>
           <div className="flex flex-col gap-2">
-            <p>Category</p>
+            <p>{t("category")}</p>
             <span className="flex flex-col">
               <label>
                 <input type="radio" name="home" value="home" />
-                Home
+                {t("home")}
               </label>
               <label>
                 <input
@@ -43,7 +52,7 @@ function App() {
                   name="Tech"
                   value="Tech"
                 />
-                Tech
+                {t("tech")}
               </label>
               <label>
                 <input
@@ -52,10 +61,10 @@ function App() {
                   name="Stationery"
                   value="Stationery"
                 />
-                Stationery
+                {t("stationery")}
               </label>
             </span>
-            <p>Price</p>
+            <p>{t("price")}</p>
             <span className="flex flex-col">
               <label>
                 <input
@@ -64,7 +73,7 @@ function App() {
                   name="ascending"
                   value="ascending"
                 />
-                ascending
+                {t("ascending")}
               </label>
               <label>
                 <input
@@ -73,7 +82,7 @@ function App() {
                   name="descending"
                   value="descending"
                 />
-                descending
+                {t("descending")}
               </label>
             </span>
           </div>
