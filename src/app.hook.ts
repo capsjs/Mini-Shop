@@ -4,19 +4,33 @@ import type { TProduct } from "./lib/types/product.types";
 import { products } from "./lib/products";
 
 export const useApp = () => {
-  const [sortedPrices, setSortedPrices] = useState<TProduct[]>(products);
+  const [sortedProducts, setSortedProducts] = useState<TProduct[]>(products);
 
 const sortByAscendingPrice = () => {
-  setSortedPrices(prev => [...prev].sort((a, b) => +a.price - +b.price))
+  setSortedProducts(prev => [...prev].sort((a, b) => +a.price - +b.price))
 };
 
 const sortByDescendingPrice = () => {
-  setSortedPrices(prev => [...prev].sort((a, b) => +b.price - +a.price))
+  setSortedProducts(prev => [...prev].sort((a, b) => +b.price - +a.price))
+};
+
+const filteredByName = (name: string, products: TProduct[]) => {
+  return products.filter((product) =>
+    product.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
+};
+
+const filteredProductsByName = (inputText: string, products: TProduct[]) => {
+  return filteredByName(inputText, products); 
+};
+
+const handleChangeSearchInput = (inputText: string) => {
+  setSortedProducts(filteredProductsByName(inputText, products))
 };
 
   return {
-    sortedPrices,
+    sortedProducts,
     sortByAscendingPrice,
-    sortByDescendingPrice
+    sortByDescendingPrice,
+    handleChangeSearchInput
   }
 }

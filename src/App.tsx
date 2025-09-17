@@ -8,8 +8,12 @@ import { useApp } from "./app.hook";
 
 function App() {
   const { t } = useTranslation();
-  const { sortedPrices, sortByAscendingPrice, sortByDescendingPrice } =
-    useApp();
+  const {
+    sortedProducts,
+    sortByAscendingPrice,
+    sortByDescendingPrice,
+    handleChangeSearchInput,
+  } = useApp();
 
   return (
     <>
@@ -24,17 +28,15 @@ function App() {
           <p>Mini Shop</p>
         </div>
 
-        <div className="flex justify-end m-4">
-          <div
+        <div className="flex justify-end">
+          <input
+            className="flex justify-end pl-2 m-4 w-1/4 rounded-md border-[#7c52b7] border-2"
             id="search-bar"
-            className="flex border-2 border-[#7c52b7] rounded-md pl-2 items-center"
-          >
-            <input
-              aria-label="search-bar"
-              type="text"
-              placeholder={t("search")}
-            />
-          </div>
+            aria-label="search-bar"
+            type="text"
+            placeholder={t("search")}
+            onChange={(e) => handleChangeSearchInput(e.target.value)}
+          />
         </div>
 
         <div className="grid grid-cols-5 h-full">
@@ -97,7 +99,7 @@ function App() {
             </div>
           </div>
           <div className="col-span-4 flex gap-2 h-full">
-            {sortedPrices.map((product) => (
+            {sortedProducts.map((product) => (
               <Card key={product.id}>
                 <div className="flex justify-end">
                   <div className="p-3">🖊️</div>
