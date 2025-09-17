@@ -3,6 +3,7 @@ import "./translation/locales/i18n";
 
 import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
+import Card from "./components/card/Card";
 
 function App() {
   const { t } = useTranslation();
@@ -13,6 +14,7 @@ function App() {
         <div className="flex justify-end m-4 gap-4 text-black">
           <LanguageSwitcher />
         </div>
+
         <div
           id="header-logo"
           className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd]"
@@ -33,58 +35,63 @@ function App() {
           </div>
         </div>
 
-        <div
-          id="menu-content"
-          className="flex flex-col text-[#7c52b7] font-semibold w-1/6 h-full p-4 m-4 border-r-2 border-[#7c52b7] gap-4"
-        >
-          <p>{t("filter")}</p>
-          <div className="flex flex-col gap-2">
-            <p>{t("category")}</p>
-            <span className="flex flex-col">
-              <label>
-                <input type="radio" name="home" value="home" />
-                {t("home")}
-              </label>
-              <label>
-                <input
-                  aria-label="category"
-                  type="radio"
-                  name="Tech"
-                  value="Tech"
-                />
-                {t("tech")}
-              </label>
-              <label>
-                <input
-                  aria-label="category"
-                  type="radio"
-                  name="Stationery"
-                  value="Stationery"
-                />
-                {t("stationery")}
-              </label>
-            </span>
-            <p>{t("price")}</p>
-            <span className="flex flex-col">
-              <label>
-                <input
-                  aria-label="ascending"
-                  type="radio"
-                  name="ascending"
-                  value="ascending"
-                />
-                {t("ascending")}
-              </label>
-              <label>
-                <input
-                  aria-label="descending"
-                  type="radio"
-                  name="descending"
-                  value="descending"
-                />
-                {t("descending")}
-              </label>
-            </span>
+        <div className="grid grid-cols-5 h-full">
+          <div
+            id="menu-content"
+            className="col-start-1 col-end-2 flex flex-col text-[#7c52b7] font-semibold h-full p-4 m-4 border-r-2 border-[#7c52b7] gap-4"
+          >
+            <p>{t("filter")}</p>
+            <div className="flex flex-col gap-2">
+              <p>{t("category")}</p>
+              <span className="flex flex-col">
+                <label>
+                  <input type="radio" name="home" value="home" />
+                  {t("home")}
+                </label>
+                <label>
+                  <input
+                    aria-label="category"
+                    type="radio"
+                    name="Tech"
+                    value="Tech"
+                  />
+                  {t("tech")}
+                </label>
+                <label>
+                  <input
+                    aria-label="category"
+                    type="radio"
+                    name="Stationery"
+                    value="Stationery"
+                  />
+                  {t("stationery")}
+                </label>
+              </span>
+              <p>{t("price")}</p>
+              <span className="flex flex-col">
+                <label>
+                  <input
+                    aria-label="ascending"
+                    type="radio"
+                    name="ascending"
+                    value="ascending"
+                  />
+                  {t("ascending")}
+                </label>
+                <label>
+                  <input
+                    aria-label="descending"
+                    type="radio"
+                    name="descending"
+                    value="descending"
+                  />
+                  {t("descending")}
+                </label>
+              </span>
+            </div>
+          </div>
+          <div className="col-start-2 flex gap-2">
+            <Card />
           </div>
         </div>
       </div>
