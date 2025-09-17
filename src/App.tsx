@@ -4,10 +4,12 @@ import "./translation/locales/i18n";
 import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 import Card from "./components/card/Card";
-import { products } from "./lib/products";
+import { useApp } from "./app.hook";
 
 function App() {
   const { t } = useTranslation();
+  const { sortedPrices, sortByAscendingPrice, sortByDescendingPrice } =
+    useApp();
 
   return (
     <>
@@ -15,7 +17,6 @@ function App() {
         <div className="flex justify-end m-4 gap-4 text-black">
           <LanguageSwitcher />
         </div>
-
         <div
           id="header-logo"
           className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd]"
@@ -46,15 +47,15 @@ function App() {
               <p>{t("category")}</p>
               <span className="flex flex-col">
                 <label>
-                  <input type="radio" name="home" value="home" />
+                  <input type="radio" name="category" value="home" />
                   {t("home")}
                 </label>
                 <label>
                   <input
                     aria-label="category"
                     type="radio"
-                    name="Tech"
-                    value="Tech"
+                    name="category"
+                    value="tech"
                   />
                   {t("tech")}
                 </label>
@@ -62,8 +63,8 @@ function App() {
                   <input
                     aria-label="category"
                     type="radio"
-                    name="Stationery"
-                    value="Stationery"
+                    name="category"
+                    value="stationery"
                   />
                   {t("stationery")}
                 </label>
@@ -74,8 +75,10 @@ function App() {
                   <input
                     aria-label="ascending"
                     type="radio"
-                    name="ascending"
+                    name="price"
                     value="ascending"
+                    onChange={sortByAscendingPrice}
+                    defaultChecked={false}
                   />
                   {t("ascending")}
                 </label>
@@ -83,8 +86,10 @@ function App() {
                   <input
                     aria-label="descending"
                     type="radio"
-                    name="descending"
+                    name="price"
                     value="descending"
+                    onChange={sortByDescendingPrice}
+                    defaultChecked={false}
                   />
                   {t("descending")}
                 </label>
@@ -92,7 +97,7 @@ function App() {
             </div>
           </div>
           <div className="col-span-4 flex gap-2 h-full">
-            {products.map((product) => (
+            {sortedPrices.map((product) => (
               <Card key={product.id}>
                 <div className="flex justify-end">
                   <div className="p-3">🖊️</div>
