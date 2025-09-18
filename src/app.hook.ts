@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import type { TProduct } from "./lib/types/product.types";
 import { products } from "./lib/products";
+import { sortAscending, sortDescending } from "./lib/sort";
+import { filteredByName } from "./lib/filter";
 
 export const useApp = () => {
   const { t } = useTranslation();
@@ -14,17 +16,13 @@ export const useApp = () => {
   const [updatedProductStock, setUpdatedProductStock] = useState<number | null>(null);
 
   const sortByAscendingPrice = () => {
-    setSortedProducts(prev => [...prev].sort((a, b) => +a.price - +b.price))
+    setSortedProducts(prev => sortAscending(prev))
   };
 
   const sortByDescendingPrice = () => {
-    setSortedProducts(prev => [...prev].sort((a, b) => +b.price - +a.price))
+    setSortedProducts(prev => sortDescending(prev))
   };
 
-  const filteredByName = (name: string, products: TProduct[]) => {
-    return products.filter((product) =>
-      product.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()));
-  };
 
   const filteredProductsByName = (inputText: string, products: TProduct[]) => {
     return filteredByName(inputText, products); 
