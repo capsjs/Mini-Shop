@@ -7,9 +7,13 @@ const LanguageSwitcher = () => {
   };
   return (
     <div className="flex gap-2 text-black font-bold">
-      <button onClick={() => changeLanguage("en")}>EN</button>
+      <button onClick={() => changeLanguage("en")} aria-live="polite">
+        EN
+      </button>
       <p>/</p>
-      <button onClick={() => changeLanguage("fr")}>FR</button>
+      <button onClick={() => changeLanguage("fr")} aria-live="polite">
+        FR
+      </button>
     </div>
   );
 };

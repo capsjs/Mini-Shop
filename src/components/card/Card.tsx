@@ -5,7 +5,9 @@ import type { TCard } from "./card.types";
 const Card: FC<TCard> = (props: TCard) => {
   const { children } = props;
   return (
-    <div className="w-[113rem] h-60 rounded-lg bg-[#faf8f6]">{children}</div>
+    <div className="flex flex-col justify-center w-60 h-60 rounded-lg bg-[#faf8f6]">
+      {children}
+    </div>
   );
 };
 

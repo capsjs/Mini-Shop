@@ -48,7 +48,7 @@ function App() {
           <input
             className="flex justify-end pl-2 m-4 w-1/4 rounded-md border-[#7c52b7] border-2"
             id="search-bar"
-            aria-label="search-bar"
+            aria-label={t("search-bar")}
             type="text"
             placeholder={t("search")}
             onChange={(e) => handleChangeSearchInput(e.target.value)}
@@ -69,6 +69,7 @@ function App() {
                     <input
                       type="radio"
                       name="category"
+                      aria-label={t("category")}
                       value={item}
                       onChange={() => filterByCategory(item, products)}
                     />
@@ -139,6 +140,7 @@ function App() {
               <label>
                 {t("stock")}:
                 <input
+                  aria-label={t("input number")}
                   type="number"
                   value={updatedProductStock ?? selectedProduct.stock}
                   min={0}
@@ -152,6 +154,7 @@ function App() {
                 {t("price")}:
                 <input
                   type="number"
+                  aria-label={t("input number")}
                   value={updatedProductPrice ?? selectedProduct.price}
                   min={0}
                   className="border-2 border-[#7c52b7] rounded-md"

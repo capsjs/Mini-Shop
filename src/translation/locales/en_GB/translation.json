@@ -11,5 +11,7 @@
   "category": "Category",
   "stock cannot be less than or equal to zero.": "Stock cannot be less than or equal to zero.",
   "price cannot be less than or equal to zero.": "Price cannot be less than or equal to zero.",
-  "out of stock": "Out of Stock"
+  "out of stock": "Out of Stock",
+  "search-bar": "Search Bar",
+  "input number": "Input Number"
 }
