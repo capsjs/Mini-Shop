@@ -161,7 +161,7 @@ function App() {
                 />
               </label>
             </div>
-            <div className="flex justify-evenly pt-3">
+            <div className="flex justify-evenly pt-3 m-3">
               <button
                 className="bg-green-600 rounded-md p-2"
                 onClick={handleConfirmPriceChange}
