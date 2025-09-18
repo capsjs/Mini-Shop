@@ -104,34 +104,12 @@ function App() {
               </span>
             </div>
           </div>
+
           <div className="col-span-4 flex gap-2 h-full">
             <ProductList
               sortedProducts={sortedProducts}
               handleOpenModal={handleOpenModal}
             />
-
-            {/* {sortedProducts.map((product) => (
-              <>
-                <Card key={product.id}>
-                  <div
-                    className="flex justify-end"
-                    onClick={() => handleOpenModal(parseInt(product.id))}
-                  >
-                    <div className="p-3 cursor-pointer">🖊️</div>
-                  </div>
-                  <div
-                    className="p-4 flex justify-center"
-                    onClick={() => navigate(`/product/${product.id}`)}
-                  >
-                    <img src={product.img} className="max-h-28" />
-                  </div>
-                  <span className="flex justify-between m-2 text-[#7c52b7]">
-                    <p>{product.name}</p>
-                    <p>{product.price}€</p>
-                  </span>
-                </Card>
-              </>
-            ))} */}
           </div>
         </div>
         {isOpenModal && selectedProduct && (
