@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import "./App.css";
 import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
-import Card from "./components/card/Card";
 import { useApp } from "./app.hook";
 import { products } from "./lib/products";
 import { Modal } from "./components/modal/Modal";
+import { ProductList } from "./modules/productList/ProductList";
 
 function App() {
   const navigate = useNavigate();
@@ -104,9 +104,13 @@ function App() {
               </span>
             </div>
           </div>
-
           <div className="col-span-4 flex gap-2 h-full">
-            {sortedProducts.map((product) => (
+            <ProductList
+              sortedProducts={sortedProducts}
+              handleOpenModal={handleOpenModal}
+            />
+
+            {/* {sortedProducts.map((product) => (
               <>
                 <Card key={product.id}>
                   <div
@@ -127,7 +131,7 @@ function App() {
                   </span>
                 </Card>
               </>
-            ))}
+            ))} */}
           </div>
         </div>
         {isOpenModal && selectedProduct && (
