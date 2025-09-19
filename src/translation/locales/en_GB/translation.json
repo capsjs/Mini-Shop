@@ -13,5 +13,6 @@
   "price cannot be less than or equal to zero.": "Price cannot be less than or equal to zero.",
   "out of stock": "Out of Stock",
   "search-bar": "Search Bar",
-  "input number": "Input Number"
+  "input number": "Input Number",
+  "product not found": "Product not found"
 }

@@ -13,5 +13,6 @@
   "price cannot be less than or equal to zero.": "Le prix ne peut pas être inférieur ou égal à zéro.",
   "out of stock": "Rupture de stock",
   "search-bar": "Barre de recherche",
-  "input number": "champs de saisie numérique"
+  "input number": "champs de saisie numérique",
+  "product not found": "Produit introuvable"
 }

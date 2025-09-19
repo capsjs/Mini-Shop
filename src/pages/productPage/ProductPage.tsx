@@ -1,16 +1,11 @@
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
-import { products } from "../../lib/products";
 import Card from "../../components/card/Card";
+import { useProductPage } from "./productPage.hooks";
 
 const ProductPage = () => {
-  const { t } = useTranslation();
-  const { id } = useParams();
-  const selectedProduct = products.find((product) => product.id === id);
+  const { t, selectedProduct } = useProductPage();
 
   if (!selectedProduct) {
-    return <div>Produit introuvable</div>;
+    return <div>{t("product not found")}</div>;
   }
 
   return (
