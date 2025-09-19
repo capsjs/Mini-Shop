@@ -26,7 +26,9 @@ export const ProductList: FC<TProductList> = (props: TProductList) => {
             </div>
             <div
               className="p-4 flex justify-center"
-              onClick={() => navigate(`/product/${product.id}`)}
+              onClick={() =>
+                navigate(`/product/${product.id}`, { state: { product } })
+              }
             >
               <img src={product.img} className="max-h-28" />
             </div>

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { products } from "../../lib/products";
 
+
 export const useProductPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
