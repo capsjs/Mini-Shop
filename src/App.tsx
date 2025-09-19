@@ -32,7 +32,7 @@ function App() {
         <div className="grid grid-cols-5 h-full">
           <Filter setSortedProducts={setSortedProducts} />
 
-          <div className="col-span-4 flex gap-2 h-full">
+          <div className="col-span-4 flex gap-2">
             <ProductList
               sortedProducts={sortedProducts}
               handleOpenModal={handleOpenModal}
@@ -41,32 +41,32 @@ function App() {
         </div>
         {isOpenModal && selectedProduct && (
           <Modal isOpen={isOpenModal} onClose={() => false}>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center gap-2">
               <img src={selectedProduct.img} className="max-h-28" />
               <p>{selectedProduct.name}</p>
             </div>
-            <div className="flex flex-col justify-center items-center gap-2 pl-2  ">
+            <div className="flex flex-col justify-center items-center gap-2 pt-6">
               <label>
-                {t("stock")}:
+                {t("stock")}
                 <input
                   aria-label={t("input number")}
                   type="number"
                   value={updatedProductStock ?? selectedProduct.stock}
                   min={0}
-                  className="border-2 border-[#7c52b7] rounded-md"
+                  className="border-2 border-[#7c52b7] rounded-md ml-2"
                   onChange={(e) =>
                     handleProductStockChange(Number(e.target.value))
                   }
                 />
               </label>
               <label>
-                {t("price")}:
+                {t("price")}
                 <input
                   type="number"
                   aria-label={t("input number")}
                   value={updatedProductPrice ?? selectedProduct.price}
                   min={0}
-                  className="border-2 border-[#7c52b7] rounded-md"
+                  className="border-2 border-[#7c52b7] rounded-md ml-2  "
                   onChange={(e) =>
                     handleProductPriceChange(Number(e.target.value))
                   }

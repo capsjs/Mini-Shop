@@ -14,5 +14,8 @@
   "out of stock": "Rupture de stock",
   "search-bar": "Barre de recherche",
   "input number": "champs de saisie numérique",
-  "product not found": "Produit introuvable"
+  "product not found": "Produit introuvable",
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
+  "stock": "Quantité"
 }

@@ -14,7 +14,7 @@ export const ProductList: FC<TProductList> = (props: TProductList) => {
   const navigate = useNavigate();
 
   return (
-    <div className="col-span-4 flex gap-2 h-full">
+    <div className="col-span-4 flex flex-wrap gap-2 h-full">
       {sortedProducts.map((product) => (
         <>
           <Card key={product.id}>
@@ -30,8 +30,8 @@ export const ProductList: FC<TProductList> = (props: TProductList) => {
             >
               <img src={product.img} className="max-h-28" />
             </div>
-            <span className="flex justify-between m-2 text-[#7c52b7]">
-              <p>{product.name}</p>
+            <span className="flex flex-col m-2 text-[#7c52b7]">
+              <p className="font-bold">{product.name}</p>
               <p>{product.price}€</p>
             </span>
           </Card>

@@ -20,7 +20,7 @@ export const Header: FC<THeader> = (props: THeader) => {
       </div>
       <div
         id="header-logo"
-        className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd] cursor-pointer"
+        className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold cursor-pointer"
         onClick={() => navigate("/")}
       >
         <p>Mini Shop</p>

@@ -14,5 +14,8 @@
   "out of stock": "Out of Stock",
   "search-bar": "Search Bar",
   "input number": "Input Number",
-  "product not found": "Product not found"
+  "product not found": "Product not found",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "stock": "Stock"
 }
