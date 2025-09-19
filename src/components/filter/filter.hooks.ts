@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next"
 
 import { products } from "../../lib/products"
-import { sortAscending, sortDescending } from "../../lib/sort"
+import { sortAscending, sortDescending } from "../../shared/sort"
 import type { TProduct } from "../../lib/types/product.types"
 
 export type TFilterHookProps = {

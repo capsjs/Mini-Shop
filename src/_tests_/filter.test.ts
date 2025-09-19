@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest"
 
 import { mockProducts } from "./mockproducts";
-import { filteredByName } from "../lib/filter";
+import { filteredByName } from "../shared/filter";
 
 describe("filteredByName", () => {
   it("return search terms", () => {

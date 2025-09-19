@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { filteredByName } from "../../lib/filter";
+import { filteredByName } from "../../shared/filter";
 import { products } from "../../lib/products";
 import type { TProduct } from "../../lib/types/product.types";
 

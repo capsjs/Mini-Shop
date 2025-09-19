@@ -1,4 +1,4 @@
-import type { TProduct } from "./types/product.types"
+import type { TProduct } from "../lib/types/product.types";
 
 export function filteredByName(name: string, products: TProduct[]) {
   return products.filter((product) =>

@@ -49,7 +49,6 @@ const handleProductStockChange = (stock: number) => {
 
 const handleConfirmChanges = () => {
   if (!selectedProductId) return;
-   {
     setSortedProducts(prevProducts =>
       prevProducts.map(product =>
         parseInt(product.id) === selectedProductId
@@ -61,7 +60,6 @@ const handleConfirmChanges = () => {
         : product
       )
     );
-  } 
   setIsOpenModal(false);
   setUpdatedProductPrice(null);
   setUpdatedProductStock(null);
