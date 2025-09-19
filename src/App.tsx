@@ -1,15 +1,13 @@
 import "./translation/locales/i18n";
-import { useNavigate } from "react-router-dom";
 
 import "./App.css";
-import LanguageSwitcher from "./components/languageSwitcher/LanguageSwitcher";
 import { useApp } from "./app.hook";
 import { products } from "./lib/products";
 import { Modal } from "./components/modal/Modal";
 import { ProductList } from "./modules/productList/ProductList";
+import { Header } from "./modules/header/Header";
 
 function App() {
-  const navigate = useNavigate();
   const {
     t,
     sortedProducts,
@@ -17,10 +15,10 @@ function App() {
     isOpenModal,
     updatedProductPrice,
     updatedProductStock,
+    setSortedProducts,
     handleOpenModal,
     sortByAscendingPrice,
     sortByDescendingPrice,
-    handleChangeSearchInput,
     filterByCategory,
     getSelectedProduct,
     handleCloseModal,
@@ -33,27 +31,7 @@ function App() {
   return (
     <>
       <div className="flex flex-col h-screen">
-        <div className="flex justify-end m-4 gap-4 text-black">
-          <LanguageSwitcher />
-        </div>
-        <div
-          id="header-logo"
-          className="flex items-center h-32 justify-center text-center text-5xl text-[#7c52b7] font-bold bg-[#fffbdd] cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          <p>Mini Shop</p>
-        </div>
-
-        <div className="flex justify-end">
-          <input
-            className="flex justify-end pl-2 m-4 w-1/4 rounded-md border-[#7c52b7] border-2"
-            id="search-bar"
-            aria-label={t("search-bar")}
-            type="text"
-            placeholder={t("search")}
-            onChange={(e) => handleChangeSearchInput(e.target.value)}
-          />
-        </div>
+        <Header setSortedProducts={setSortedProducts} />
 
         <div className="grid grid-cols-5 h-full">
           <div

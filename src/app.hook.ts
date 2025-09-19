@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import type { TProduct } from "./lib/types/product.types";
 import { products } from "./lib/products";
 import { sortAscending, sortDescending } from "./lib/sort";
-import { filteredByName } from "./lib/filter";
 
 export const useApp = () => {
   const { t } = useTranslation();
@@ -23,14 +22,6 @@ export const useApp = () => {
     setSortedProducts(prev => sortDescending(prev))
   };
 
-
-  const filteredProductsByName = (inputText: string, products: TProduct[]) => {
-    return filteredByName(inputText, products); 
-  };
-
-  const handleChangeSearchInput = (inputText: string) => {
-    setSortedProducts(filteredProductsByName(inputText, products))
-  };
 
 const filterByCategory = (category: string, products: TProduct[]) => {
   if (category === "all") {
@@ -108,9 +99,9 @@ const handleConfirmPriceChange = () => {
     isOpenModal,
     updatedProductPrice,
     updatedProductStock,
+    setSortedProducts,
     sortByAscendingPrice,
     sortByDescendingPrice,
-    handleChangeSearchInput,
     filterByCategory,
     handleOpenModal,
     getSelectedProduct,
