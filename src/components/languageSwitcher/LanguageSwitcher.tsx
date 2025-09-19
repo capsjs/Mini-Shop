@@ -1,17 +1,29 @@
-import { useTranslation } from "react-i18next";
+import { useLanguageSwitcher } from "./languageSwitcher.hooks";
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
+  const { i18n, changeLanguage } = useLanguageSwitcher();
+
   return (
-    <div className="flex gap-2 text-black font-bold">
-      <button onClick={() => changeLanguage("en")} aria-live="polite">
+    <div className="flex gap-2">
+      <button
+        onClick={() => changeLanguage("en")}
+        aria-live="polite"
+        disabled={i18n.language === "en"}
+        className={
+          i18n.language === "en" ? "text-[#7c52b7] font-bold" : "text-gray-400"
+        }
+      >
         EN
       </button>
-      <p>/</p>
-      <button onClick={() => changeLanguage("fr")} aria-live="polite">
+      <p className="text-gray-400">/</p>
+      <button
+        onClick={() => changeLanguage("fr")}
+        aria-live="polite"
+        disabled={i18n.language === "fr"}
+        className={
+          i18n.language === "fr" ? "text-[#7c52b7] font-bold" : "text-gray-400"
+        }
+      >
         FR
       </button>
     </div>
