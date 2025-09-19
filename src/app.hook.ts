@@ -12,7 +12,6 @@ export const useApp = () => {
   const [updatedProductPrice, setUpdatedProductPrice] = useState<number | null>(null);  
   const [updatedProductStock, setUpdatedProductStock] = useState<number | null>(null);
 
-
 const handleOpenModal = (productId: number) => {
   const productsIds = products.map(product => parseInt(product.id));
   if (productsIds.includes(productId)) {
@@ -22,7 +21,7 @@ const handleOpenModal = (productId: number) => {
 };
 
 const getSelectedProduct = () => {
-  return products.find(product => parseInt(product.id) === selectedProductId) || null;
+  return sortedProducts.find(product => parseInt(product.id) === selectedProductId) ?? null;
 };
 
 const handleCloseModal = () => {
@@ -31,46 +30,42 @@ const handleCloseModal = () => {
 };
 
 const handleProductPriceChange = (price: number) => {
-  setUpdatedProductPrice(price);
   if (price <= 0) {
-    alert(t("price cannot be less than or equal to zero."));
-    setUpdatedProductPrice(1);
+    alert(t("price cannot be less than zero."));
+    setUpdatedProductPrice(0);
+    return;
   }
+  setUpdatedProductPrice(price);
 };
 
 const handleProductStockChange = (stock: number) => {
-  setUpdatedProductStock(stock);
   if (stock <= 0) {
     alert(t("stock cannot be less than or equal to zero."));
     setUpdatedProductStock(1);
-  };
+    return;
 }
+  setUpdatedProductStock(stock);
+};
 
-const handleConfirmPriceChange = () => {
-  if (selectedProductId !== null && updatedProductPrice !== null ) {
+const handleConfirmChanges = () => {
+  if (!selectedProductId) return;
+   {
     setSortedProducts(prevProducts =>
       prevProducts.map(product =>
         parseInt(product.id) === selectedProductId
-          ? { ...product, price: updatedProductPrice }
-          : product
+        ? {
+            ...product,
+            price: updatedProductPrice ?? product.price,
+            stock: updatedProductStock ?? product.stock,
+        }
+        : product
       )
     );
-    setIsOpenModal(false);
-    setSelectedProductId(null);
-    setUpdatedProductPrice(null);
   } 
-  if (selectedProductId !== null && updatedProductStock !== null ) {
-    setSortedProducts(prevProducts =>
-      prevProducts.map(product =>
-        parseInt(product.id) === selectedProductId
-          ? { ...product, stock: updatedProductStock }
-          : product
-      )
-    );
-    setIsOpenModal(false);
-  };
-  setSelectedProductId(null);
+  setIsOpenModal(false);
+  setUpdatedProductPrice(null);
   setUpdatedProductStock(null);
+  setSelectedProductId(null);
 };
 
 
@@ -85,7 +80,7 @@ const handleConfirmPriceChange = () => {
     getSelectedProduct,
     handleCloseModal,
     handleProductPriceChange,
-    handleConfirmPriceChange,
+    handleConfirmChanges,
     handleProductStockChange,
   }
 }

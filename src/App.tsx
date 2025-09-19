@@ -19,7 +19,7 @@ function App() {
     getSelectedProduct,
     handleCloseModal,
     handleProductPriceChange,
-    handleConfirmPriceChange,
+    handleConfirmChanges,
     handleProductStockChange,
   } = useApp();
   const selectedProduct = getSelectedProduct();
@@ -76,7 +76,7 @@ function App() {
             <div className="flex justify-evenly pt-3 m-3">
               <button
                 className="bg-green-600 rounded-md p-2"
-                onClick={handleConfirmPriceChange}
+                onClick={handleConfirmChanges}
               >
                 <p>{t("confirm")}</p>
               </button>
