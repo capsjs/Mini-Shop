@@ -3,33 +3,15 @@ import { useTranslation } from "react-i18next";
 
 import type { TProduct } from "./lib/types/product.types";
 import { products } from "./lib/products";
-import { sortAscending, sortDescending } from "./lib/sort";
 
 export const useApp = () => {
   const { t } = useTranslation();
   const [sortedProducts, setSortedProducts] = useState<TProduct[]>(products);
-  const categories = ["all", ...Array.from(new Set(products.map(product => product.category)))]
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
   const [updatedProductPrice, setUpdatedProductPrice] = useState<number | null>(null);  
   const [updatedProductStock, setUpdatedProductStock] = useState<number | null>(null);
 
-  const sortByAscendingPrice = () => {
-    setSortedProducts(prev => sortAscending(prev))
-  };
-
-  const sortByDescendingPrice = () => {
-    setSortedProducts(prev => sortDescending(prev))
-  };
-
-
-const filterByCategory = (category: string, products: TProduct[]) => {
-  if (category === "all") {
-    setSortedProducts(products);
-  } else {
-    setSortedProducts(products.filter(product => product.category === category));
-  }
-};
 
 const handleOpenModal = (productId: number) => {
   const productsIds = products.map(product => parseInt(product.id));
@@ -95,14 +77,10 @@ const handleConfirmPriceChange = () => {
   return {
     t,
     sortedProducts,
-    categories,
     isOpenModal,
     updatedProductPrice,
     updatedProductStock,
     setSortedProducts,
-    sortByAscendingPrice,
-    sortByDescendingPrice,
-    filterByCategory,
     handleOpenModal,
     getSelectedProduct,
     handleCloseModal,

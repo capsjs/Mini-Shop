@@ -9,7 +9,7 @@ export type THeaderHookProps = {
 }
 
 export const useHeader = (props: THeaderHookProps) => {
-  const { setSortedProducts } = props
+  const { setSortedProducts } = props;
   const { t } = useTranslation();
 
  const filteredProductsByName = (inputText: string, products: TProduct[]) => {
